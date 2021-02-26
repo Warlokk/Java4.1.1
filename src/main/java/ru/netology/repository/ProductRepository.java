@@ -27,20 +27,16 @@ public class ProductRepository {
         if (findById(id) == null) {
             throw new NotFoundException("Element with ID " + id + " not found");
         }
-        try {
-            int length = items.length - 1;
-            Product[] tmp = new Product[length];
-            int index = 0;
-            for (Product item : items) {
-                if (item.getId() != id) {
-                    tmp[index] = item;
-                    index++;
-                }
+        int length = items.length - 1;
+        Product[] tmp = new Product[length];
+        int index = 0;
+        for (Product item : items) {
+            if (item.getId() != id) {
+                tmp[index] = item;
+                index++;
             }
-            items = tmp;
-        } catch (NotFoundException e) {
-            e.printStackTrace();
         }
+        items = tmp;
     }
 
     public Product findById(int id) {
