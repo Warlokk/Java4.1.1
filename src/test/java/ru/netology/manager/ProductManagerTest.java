@@ -61,4 +61,17 @@ class ProductManagerTest {
 
         verify(repository).findAll();
     }
+
+    @Test
+    void shouldFindById() {
+        setUp();
+        Product returned = third;
+        doReturn(returned).when(repository).findById(3);
+
+        Product expected = third;
+        Product actual = manager.findById(3);
+        assertEquals(expected, actual);
+
+        verify(repository).findById(3);
+    }
 }
